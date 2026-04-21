@@ -42,7 +42,6 @@
     overflow: hidden;
   }
 
-  /* Auth Screen */
   .auth-screen {
     display: flex;
     align-items: center;
@@ -196,7 +195,6 @@
     display: none;
   }
 
-  /* Main App */
   .app-container {
     display: none;
     height: 100vh;
@@ -229,7 +227,6 @@
     border-radius: 4px;
   }
 
-  /* Sidebar */
   .sidebar {
     width: 420px;
     min-width: 340px;
@@ -419,7 +416,6 @@
     flex-shrink: 0;
   }
 
-  /* Chat Area */
   .chat-area {
     flex: 1;
     display: flex;
@@ -530,13 +526,8 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .message-row.sent {
-    justify-content: flex-end;
-  }
-
-  .message-row.received {
-    justify-content: flex-start;
-  }
+  .message-row.sent { justify-content: flex-end; }
+  .message-row.received { justify-content: flex-start; }
 
   .message-bubble {
     max-width: 65%;
@@ -586,38 +577,6 @@
 
   .message-status.read {
     color: var(--blue-check);
-  }
-
-  .typing-indicator {
-    display: none;
-    align-items: center;
-    gap: 4px;
-    padding: 12px 16px;
-  }
-
-  .typing-indicator.active {
-    display: flex;
-  }
-
-  .typing-dots {
-    display: flex;
-    gap: 3px;
-  }
-
-  .typing-dots span {
-    width: 7px;
-    height: 7px;
-    background: var(--text-secondary);
-    border-radius: 50%;
-    animation: typingBounce 1.4s infinite ease-in-out;
-  }
-
-  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes typingBounce {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-5px); opacity: 1; }
   }
 
   .chat-input-area {
@@ -679,7 +638,6 @@
     color: var(--green-accent) !important;
   }
 
-  /* Empty State */
   .chat-empty {
     flex: 1;
     display: flex;
@@ -712,7 +670,6 @@
     line-height: 1.6;
   }
 
-  /* Profile Panel */
   .profile-panel {
     position: absolute;
     top: 0; left: 0; bottom: 0;
@@ -817,7 +774,6 @@
     background: rgba(234,67,53,0.25);
   }
 
-  /* New Chat Modal */
   .modal-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -939,7 +895,20 @@
     margin-top: 2px;
   }
 
-  /* Toast */
+  .empty-contacts {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+
+  .empty-contacts i {
+    font-size: 40px;
+    opacity: 0.3;
+    display: block;
+    margin-bottom: 12px;
+  }
+
   .toast-container {
     position: fixed;
     bottom: 20px;
@@ -971,7 +940,6 @@
     to { opacity: 0; transform: translateY(-10px); }
   }
 
-  /* Emoji picker mini */
   .emoji-picker {
     position: absolute;
     bottom: 60px;
@@ -1009,19 +977,10 @@
     background: var(--bg-hover);
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(134,150,160,0.3);
-    border-radius: 3px;
-  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(134,150,160,0.3); border-radius: 3px; }
 
-  /* Mobile responsive */
   @media (max-width: 768px) {
     .sidebar {
       width: 100%;
@@ -1062,7 +1021,6 @@
 </head>
 <body>
 
-<!-- Auth Screen -->
 <div class="auth-screen" id="authScreen">
   <div class="auth-card">
     <div class="auth-logo">
@@ -1076,8 +1034,6 @@
     </div>
     <div class="auth-error" id="authError"></div>
     <div class="auth-success" id="authSuccess"></div>
-
-    <!-- Login Form -->
     <form class="auth-form active" id="loginForm" data-form="login">
       <div class="form-group">
         <label>Username</label>
@@ -1089,8 +1045,6 @@
       </div>
       <button type="submit" class="auth-btn">Sign In</button>
     </form>
-
-    <!-- Register Form -->
     <form class="auth-form" id="registerForm" data-form="register">
       <div class="form-group">
         <label>Display Name</label>
@@ -1113,11 +1067,9 @@
   </div>
 </div>
 
-<!-- Main App -->
 <div class="app-container" id="appContainer">
   <div class="app-top-bar"></div>
   <div class="app-body">
-    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <img class="user-avatar" id="currentUserAvatar" src="" alt="avatar">
@@ -1133,8 +1085,6 @@
         </div>
       </div>
       <div class="chat-list" id="chatList"></div>
-
-      <!-- Profile Panel -->
       <div class="profile-panel" id="profilePanel">
         <div class="profile-panel-header">
           <button id="profileClose"><i class="fas fa-arrow-left"></i></button>
@@ -1154,19 +1104,13 @@
         </div>
       </div>
     </div>
-
-    <!-- Chat Area -->
     <div class="chat-area" id="chatArea">
       <div class="chat-bg-pattern"></div>
-
-      <!-- Empty State -->
       <div class="chat-empty" id="chatEmpty">
         <i class="fab fa-whatsapp"></i>
         <h2>WhatsApp Web</h2>
         <p>Send and receive messages without keeping your phone online. Use WhatsApp on up to 4 linked devices and 1 phone at the same time.</p>
       </div>
-
-      <!-- Active Chat (hidden initially) -->
       <div id="activeChatContainer" style="display:none;flex-direction:column;height:100%;position:relative;z-index:1;">
         <div class="chat-header">
           <button class="mobile-back" id="mobileBackBtn"><i class="fas fa-arrow-left"></i></button>
@@ -1181,12 +1125,6 @@
           </div>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
-        <div class="typing-indicator" id="typingIndicator">
-          <div class="typing-dots">
-            <span></span><span></span><span></span>
-          </div>
-          <span style="font-size:13px;color:var(--text-secondary);margin-left:4px;" id="typingName">typing</span>
-        </div>
         <div class="emoji-picker" id="emojiPicker">
           <div class="emoji-grid" id="emojiGrid"></div>
         </div>
@@ -1203,7 +1141,6 @@
   </div>
 </div>
 
-<!-- New Chat Modal -->
 <div class="modal-overlay" id="newChatModal">
   <div class="modal">
     <div class="modal-header">
@@ -1217,12 +1154,11 @@
   </div>
 </div>
 
-<!-- Toast Container -->
 <div class="toast-container" id="toastContainer"></div>
 
 <script>
 // ============================
-// Data Store
+// Avatar pool for new users
 // ============================
 const AVATARS = [
   'https://picsum.photos/seed/alex12/200/200',
@@ -1246,58 +1182,22 @@ const EMOJIS = [
   '👋','🤝','💪','🫶','👏','🫡','🤝','✌️',
 ];
 
-// Default demo users with pre-seeded messages
-const DEFAULT_USERS = [
-  { id:'u1', name:'Sarah Johnson', username:'sarah', password:'pass123', about:'Living my best life', avatar: AVATARS[1], online: true, lastSeen: Date.now() },
-  { id:'u2', name:'Mike Chen', username:'mike', password:'pass123', about:'Building cool stuff', avatar: AVATARS[2], online: true, lastSeen: Date.now() },
-  { id:'u3', name:'Emma Wilson', username:'emma', password:'pass123', about:'Coffee enthusiast', avatar: AVATARS[3], online: false, lastSeen: Date.now() - 3600000 },
-  { id:'u4', name:'James Brown', username:'james', password:'pass123', about:'Exploring the world', avatar: AVATARS[4], online: false, lastSeen: Date.now() - 7200000 },
-  { id:'u5', name:'Olivia Davis', username:'olivia', password:'pass123', about:'Music is life', avatar: AVATARS[5], online: true, lastSeen: Date.now() },
-  { id:'u6', name:'David Kim', username:'david', password:'pass123', about:'Coding all day', avatar: AVATARS[6], online: false, lastSeen: Date.now() - 1800000 },
-  { id:'u7', name:'Sophia Martinez', username:'sophia', password:'pass123', about:'Art and design lover', avatar: AVATARS[7], online: true, lastSeen: Date.now() },
-  { id:'u8', name:'Lucas Taylor', username:'lucas', password:'pass123', about:'Sports fanatic', avatar: AVATARS[8], online: false, lastSeen: Date.now() - 5400000 },
-];
-
-const AUTO_REPLIES = [
-  "That sounds great! Let me think about it.",
-  "Haha, you're so right!",
-  "I'll get back to you on that one.",
-  "Interesting, tell me more!",
-  "Sure thing, I'm in!",
-  "Let me check my schedule first.",
-  "That's amazing news!",
-  "I was just thinking the same thing!",
-  "Good point, I hadn't considered that.",
-  "Can you send me the details?",
-  "Sounds like a plan!",
-  "I totally agree with you.",
-  "Wait, really? That's awesome!",
-  "Let's catch up soon!",
-  "Noted! I'll work on that.",
-  "Thanks for letting me know!",
-  "Oh wow, that's interesting.",
-  "I'm on it right away.",
-  "Perfect, thanks!",
-  "Haha classic!"
-];
-
 // ============================
-// State Management
+// State
 // ============================
 let state = {
   currentUser: null,
   users: [],
-  conversations: {},  // { "userId1-userId2": [messages] }
-  activeChat: null,    // userId of the other person
+  conversations: {},
+  activeChat: null,
   searchQuery: '',
 };
 
 function getUsers() {
   const stored = localStorage.getItem('wa_users');
   if (stored) return JSON.parse(stored);
-  // Seed default users
-  localStorage.setItem('wa_users', JSON.stringify(DEFAULT_USERS));
-  return [...DEFAULT_USERS];
+  localStorage.setItem('wa_users', JSON.stringify([]));
+  return [];
 }
 
 function saveUsers() {
@@ -1307,18 +1207,8 @@ function saveUsers() {
 function getConversations() {
   const stored = localStorage.getItem('wa_conversations');
   if (stored) return JSON.parse(stored);
-  // Seed some default conversations
-  const convos = {};
-  const seedMessages = [
-    { from:'u1', text:'Hey! How are you doing?', time: Date.now() - 3600000 },
-    { from:'u2', text:'Did you see the new project update?', time: Date.now() - 7200000 },
-    { from:'u3', text:'Let me know when you are free for coffee', time: Date.now() - 86400000 },
-    { from:'u5', text:'Check out this new song I found!', time: Date.now() - 43200000 },
-    { from:'u7', text:'I just finished a new design, want to see it?', time: Date.now() - 1800000 },
-  ];
-  // We'll generate seed conversations for any registered user against these contacts
-  localStorage.setItem('wa_conversations', JSON.stringify(convos));
-  return convos;
+  localStorage.setItem('wa_conversations', JSON.stringify({}));
+  return {};
 }
 
 function saveConversations() {
@@ -1333,40 +1223,21 @@ function getConversation(otherUserId) {
   const key = getConvKey(state.currentUser.id, otherUserId);
   if (!state.conversations[key]) {
     state.conversations[key] = [];
-    // Add a seed message if the other user is a default user
-    const otherUser = state.users.find(u => u.id === otherUserId);
-    if (otherUser && ['u1','u2','u3','u4','u5','u6','u7','u8'].includes(otherUserId)) {
-      const greetings = [
-        `Hey there! 👋`,
-        `Hi! Nice to connect with you!`,
-        `Hello! How's everything going?`,
-        `Hey, glad you're here!`,
-        `Hi! What's up? 😊`,
-      ];
-      state.conversations[key].push({
-        from: otherUserId,
-        text: greetings[Math.floor(Math.random() * greetings.length)],
-        time: Date.now() - Math.floor(Math.random() * 86400000),
-        status: 'read'
-      });
-      saveConversations();
-    }
+    saveConversations();
   }
   return state.conversations[key];
 }
 
 // ============================
-// Auth Logic
+// Auth
 // ============================
 function initAuth() {
   state.users = getUsers();
   state.conversations = getConversations();
 
-  // Check existing session
   const session = localStorage.getItem('wa_session');
   if (session) {
-    const userId = session;
-    const user = state.users.find(u => u.id === userId);
+    const user = state.users.find(u => u.id === session);
     if (user) {
       state.currentUser = user;
       showApp();
@@ -1388,7 +1259,6 @@ function showApp() {
   renderChatList();
 }
 
-// Tab switching
 document.querySelectorAll('.auth-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
@@ -1412,13 +1282,12 @@ function showError(msg) {
 }
 
 function showSuccess(msg) {
-  const el = documentdocument.getElementById('authSuccess');
+  const el = document.getElementById('authSuccess');
   el.textContent = msg;
   el.style.display = 'block';
   document.getElementById('authError').style.display = 'none';
 }
 
-// Login
 document.getElementById('loginForm').addEventListener('submit', (e) => {
   e.preventDefault();
   clearMessages();
@@ -1438,11 +1307,10 @@ document.getElementById('loginForm').addEventListener('submit', (e) => {
 
   state.currentUser = user;
   localStorage.setItem('wa_session', user.id);
-  showToast(`Welcome back, ${user.name}!`);
+  showToast('Welcome back, ' + user.name + '!');
   showApp();
 });
 
-// Register
 document.getElementById('registerForm').addEventListener('submit', (e) => {
   e.preventDefault();
   clearMessages();
@@ -1455,17 +1323,14 @@ document.getElementById('registerForm').addEventListener('submit', (e) => {
     showError('Please fill in all required fields');
     return;
   }
-
   if (username.length < 3) {
     showError('Username must be at least 3 characters');
     return;
   }
-
   if (password.length < 4) {
     showError('Password must be at least 4 characters');
     return;
   }
-
   if (state.users.find(u => u.username === username)) {
     showError('Username is already taken');
     return;
@@ -1486,67 +1351,62 @@ document.getElementById('registerForm').addEventListener('submit', (e) => {
   saveUsers();
   state.currentUser = newUser;
   localStorage.setItem('wa_session', newUser.id);
-  showToast(`Welcome to WhatsApp, ${name}!`);
+  showToast('Welcome to WhatsApp, ' + name + '!');
   showApp();
 });
 
 // ============================
-// Chat List Rendering
+// Chat List
 // ============================
 function renderChatList() {
   const chatList = document.getElementById('chatList');
   const otherUsers = state.users.filter(u => u.id !== state.currentUser.id);
 
-  // Build list with last message info
+  // Only show users you have a conversation with
   const chatItems = otherUsers.map(user => {
     const conv = getConversation(user.id);
     const lastMsg = conv.length > 0 ? conv[conv.length - 1] : null;
     const unreadCount = conv.filter(m => m.from === user.id && m.status !== 'read').length;
     return { user, lastMsg, unreadCount };
-  });
+  }).filter(item => item.lastMsg !== null); // Only show if conversation exists
 
-  // Sort by last message time (most recent first), then no messages last
   chatItems.sort((a, b) => {
-    if (!a.lastMsg && !b.lastMsg) return 0;
-    if (!a.lastMsg) return 1;
-    if (!b.lastMsg) return -1;
     return b.lastMsg.time - a.lastMsg.time;
   });
 
-  // Filter by search
   const query = state.searchQuery.toLowerCase();
   const filtered = chatItems.filter(item =>
     item.user.name.toLowerCase().includes(query) ||
     (item.lastMsg && item.lastMsg.text.toLowerCase().includes(query))
   );
 
+  if (filtered.length === 0) {
+    chatList.innerHTML = '<div style="padding:40px 20px;text-align:center;color:var(--text-secondary);font-size:14px;"><i class="fas fa-comments" style="font-size:40px;opacity:0.3;display:block;margin-bottom:12px;"></i>No conversations yet.<br>Start a new chat!</div>';
+    return;
+  }
+
   chatList.innerHTML = filtered.map(item => {
     const { user, lastMsg, unreadCount } = item;
     const isActive = state.activeChat === user.id;
-    const isOnline = user.online;
-    const preview = lastMsg ? lastMsg.text : 'No messages yet';
     const isMyMsg = lastMsg && lastMsg.from === state.currentUser.id;
     const time = lastMsg ? formatTime(lastMsg.time) : '';
     const checkMark = isMyMsg ? '<i class="fas fa-check-double check"></i>' : '';
 
-    return `
-      <div class="chat-item ${isActive ? 'active' : ''}" data-userid="${user.id}">
-        <img class="chat-item-avatar" src="${user.avatar}" alt="${user.name}">
-        <div class="chat-item-content">
-          <div class="chat-item-top">
-            <span class="chat-item-name">${user.name}</span>
-            <span class="chat-item-time ${unreadCount > 0 ? 'unread' : ''}">${time}</span>
-          </div>
-          <div class="chat-item-bottom">
-            <span class="chat-item-preview">${checkMark}${truncate(preview, 40)}</span>
-            ${unreadCount > 0 ? `<span class="unread-badge">${unreadCount}</span>` : ''}
-          </div>
-        </div>
-      </div>
-    `;
+    return '<div class="chat-item ' + (isActive ? 'active' : '') + '" data-userid="' + user.id + '">' +
+      '<img class="chat-item-avatar" src="' + user.avatar + '" alt="' + user.name + '">' +
+      '<div class="chat-item-content">' +
+        '<div class="chat-item-top">' +
+          '<span class="chat-item-name">' + user.name + '</span>' +
+          '<span class="chat-item-time ' + (unreadCount > 0 ? 'unread' : '') + '">' + time + '</span>' +
+        '</div>' +
+        '<div class="chat-item-bottom">' +
+          '<span class="chat-item-preview">' + checkMark + truncate(lastMsg.text, 40) + '</span>' +
+          (unreadCount > 0 ? '<span class="unread-badge">' + unreadCount + '</span>' : '') +
+        '</div>' +
+      '</div>' +
+    '</div>';
   }).join('');
 
-  // Add click listeners
   chatList.querySelectorAll('.chat-item').forEach(item => {
     item.addEventListener('click', () => {
       openChat(item.dataset.userid);
@@ -1577,14 +1437,14 @@ function formatMessageTime(timestamp) {
 }
 
 // ============================
-// Chat Opening & Rendering
+// Chat
 // ============================
 function openChat(userId) {
   state.activeChat = userId;
   const user = state.users.find(u => u.id === userId);
   if (!user) return;
 
-  // Mark messages as read
+  // Mark as read
   const conv = getConversation(userId);
   conv.forEach(m => {
     if (m.from === userId && m.status !== 'read') {
@@ -1593,12 +1453,9 @@ function openChat(userId) {
   });
   saveConversations();
 
-  // Show chat area
   document.getElementById('chatEmpty').style.display = 'none';
-  const container = document.getElementById('activeChatContainer');
-  container.style.display = 'flex';
+  document.getElementById('activeChatContainer').style.display = 'flex';
 
-  // Update header
   document.getElementById('chatAvatar').src = user.avatar;
   document.getElementById('chatName').textContent = user.name;
   const statusEl = document.getElementById('chatStatus');
@@ -1613,10 +1470,7 @@ function openChat(userId) {
   renderMessages(userId);
   renderChatList();
 
-  // Mobile: show chat area
   document.getElementById('chatArea').classList.add('mobile-open');
-
-  // Focus input
   document.getElementById('messageInput').focus();
 }
 
@@ -1644,24 +1498,22 @@ function renderMessages(userId) {
       let label = dateStr;
       if (dateStr === today) label = 'Today';
       else if (dateStr === yesterday) label = 'Yesterday';
-      html += `<div class="message-date-divider"><span>${label}</span></div>`;
+      html += '<div class="message-date-divider"><span>' + label + '</span></div>';
     }
 
     const isSent = msg.from === state.currentUser.id;
     const statusIcon = isSent ? getMessageStatusIcon(msg.status) : '';
     const readClass = msg.status === 'read' ? 'read' : '';
 
-    html += `
-      <div class="message-row ${isSent ? 'sent' : 'received'}">
-        <div class="message-bubble">
-          <span class="message-text">${escapeHtml(msg.text)}</span>
-          <span class="message-meta">
-            <span class="message-time">${formatMessageTime(msg.time)}</span>
-            ${statusIcon ? `<span class="message-status ${readClass}">${statusIcon}</span>` : ''}
-          </span>
-        </div>
-      </div>
-    `;
+    html += '<div class="message-row ' + (isSent ? 'sent' : 'received') + '">' +
+      '<div class="message-bubble">' +
+        '<span class="message-text">' + escapeHtml(msg.text) + '</span>' +
+        '<span class="message-meta">' +
+          '<span class="message-time">' + formatMessageTime(msg.time) + '</span>' +
+          (statusIcon ? '<span class="message-status ' + readClass + '">' + statusIcon + '</span>' : '') +
+        '</span>' +
+      '</div>' +
+    '</div>';
   });
 
   container.innerHTML = html;
@@ -1684,7 +1536,7 @@ function escapeHtml(text) {
 }
 
 // ============================
-// Sending Messages
+// Sending
 // ============================
 function sendMessage(text) {
   if (!text.trim() || !state.activeChat) return;
@@ -1703,84 +1555,25 @@ function sendMessage(text) {
   renderMessages(state.activeChat);
   renderChatList();
 
-  // Clear input
   document.getElementById('messageInput').value = '';
   updateSendButton();
 
-  // Simulate delivery
+  // Simulate delivery then read
   setTimeout(() => {
     msg.status = 'delivered';
     saveConversations();
     if (state.activeChat) renderMessages(state.activeChat);
   }, 800);
 
-  // Simulate read
   setTimeout(() => {
     msg.status = 'read';
     saveConversations();
     if (state.activeChat) renderMessages(state.activeChat);
   }, 1500);
-
-  // Simulate auto-reply with typing indicator
-  const otherUser = state.users.find(u => u.id === state.activeChat);
-  if (otherUser) {
-    const delay = 1500 + Math.random() * 3000;
-    setTimeout(() => {
-      showTypingIndicator(otherUser.name);
-    }, 1200);
-
-    setTimeout(() => {
-      hideTypingIndicator();
-      const reply = {
-        from: otherUser.id,
-        text: AUTO_REPLIES[Math.floor(Math.random() * AUTO_REPLIES.length)],
-        time: Date.now(),
-        status: 'delivered'
-      };
-      conv.push(reply);
-      saveConversations();
-
-      if (state.activeChat === otherUser.id) {
-        reply.status = 'read';
-        saveConversations();
-        renderMessages(state.activeChat);
-      }
-      renderChatList();
-    }, delay + 1200);
-  }
-}
-
-function showTypingIndicator(name) {
-  const indicator = document.getElementById('typingIndicator');
-  document.getElementById('typingName').textContent = name.split(' ')[0] + ' is typing...';
-  indicator.classList.add('active');
-  // Update header status
-  if (state.activeChat) {
-    const statusEl = document.getElementById('chatStatus');
-    statusEl.textContent = 'typing...';
-    statusEl.classList.add('online');
-  }
-}
-
-function hideTypingIndicator() {
-  document.getElementById('typingIndicator').classList.remove('active');
-  // Restore header status
-  if (state.activeChat) {
-    const user = state.users.find(u => u.id === state.activeChat);
-    if (user) {
-      const statusEl = document.getElementById('chatStatus');
-      if (user.online) {
-        statusEl.textContent = 'online';
-      } else {
-        statusEl.textContent = 'last seen ' + formatLastSeen(user.lastSeen);
-        statusEl.classList.remove('online');
-      }
-    }
-  }
 }
 
 // ============================
-// Input Handling
+// Input
 // ============================
 const messageInput = document.getElementById('messageInput');
 const sendBtn = document.getElementById('sendBtn');
@@ -1826,8 +1619,7 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 // Profile Panel
 // ============================
 document.getElementById('currentUserAvatar').addEventListener('click', () => {
-  const panel = document.getElementById('profilePanel');
-  panel.classList.add('open');
+  document.getElementById('profilePanel').classList.add('open');
   document.getElementById('profileAvatarLarge').src = state.currentUser.avatar;
   document.getElementById('profileName').value = state.currentUser.name;
   document.getElementById('profileAbout').value = state.currentUser.about;
@@ -1835,7 +1627,6 @@ document.getElementById('currentUserAvatar').addEventListener('click', () => {
 
 document.getElementById('profileClose').addEventListener('click', () => {
   document.getElementById('profilePanel').classList.remove('open');
-  // Save profile changes
   const newName = document.getElementById('profileName').value.trim();
   const newAbout = document.getElementById('profileAbout').value.trim();
   if (newName && (newName !== state.currentUser.name || newAbout !== state.currentUser.about)) {
@@ -1853,7 +1644,6 @@ document.getElementById('profileClose').addEventListener('click', () => {
   }
 });
 
-// Logout
 document.getElementById('logoutBtn').addEventListener('click', () => {
   localStorage.removeItem('wa_session');
   state.currentUser = null;
@@ -1895,15 +1685,22 @@ function renderContactList() {
   );
 
   const list = document.getElementById('contactList');
-  list.innerHTML = otherUsers.map(user => `
-    <div class="modal-contact" data-userid="${user.id}">
-      <img src="${user.avatar}" alt="${user.name}">
-      <div>
-        <div class="modal-contact-name">${user.name}</div>
-        <div class="modal-contact-about">${user.about}</div>
-      </div>
-    </div>
-  `).join('');
+
+  if (otherUsers.length === 0) {
+    list.innerHTML = '<div class="empty-contacts"><i class="fas fa-user-plus"></i>No other users registered yet.<br>Share the app to start chatting!</div>';
+    return;
+  }
+
+  list.innerHTML = otherUsers.map(user => {
+    const isOnline = user.online ? '<span style="color:var(--green-accent);"> online</span>' : '';
+    return '<div class="modal-contact" data-userid="' + user.id + '">' +
+      '<img src="' + user.avatar + '" alt="' + user.name + '">' +
+      '<div>' +
+        '<div class="modal-contact-name">' + user.name + isOnline + '</div>' +
+        '<div class="modal-contact-about">' + user.about + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
 
   list.querySelectorAll('.modal-contact').forEach(el => {
     el.addEventListener('click', () => {
@@ -1917,12 +1714,11 @@ function renderContactList() {
 // Emoji Picker
 // ============================
 document.getElementById('emojiBtn').addEventListener('click', () => {
-  const picker = document.getElementById('emojiPicker');
-  picker.classList.toggle('open');
+  document.getElementById('emojiPicker').classList.toggle('open');
 });
 
 document.getElementById('emojiGrid').innerHTML = EMOJIS.map(e =>
-  `<span data-emoji="${e}">${e}</span>`
+  '<span data-emoji="' + e + '">' + e + '</span>'
 ).join('');
 
 document.getElementById('emojiGrid').addEventListener('click', (e) => {
@@ -1934,7 +1730,6 @@ document.getElementById('emojiGrid').addEventListener('click', (e) => {
   }
 });
 
-// Close emoji picker on outside click
 document.addEventListener('click', (e) => {
   const picker = document.getElementById('emojiPicker');
   const emojiBtn = document.getElementById('emojiBtn');
@@ -1944,7 +1739,7 @@ document.addEventListener('click', (e) => {
 });
 
 // ============================
-// Mobile Back Button
+// Mobile Back
 // ============================
 document.getElementById('mobileBackBtn').addEventListener('click', () => {
   document.getElementById('chatArea').classList.remove('mobile-open');
@@ -1953,18 +1748,17 @@ document.getElementById('mobileBackBtn').addEventListener('click', () => {
 });
 
 // ============================
-// Menu button (opens profile)
+// Menu button
 // ============================
 document.getElementById('menuBtn').addEventListener('click', () => {
-  const panel = document.getElementById('profilePanel');
-  panel.classList.add('open');
+  document.getElementById('profilePanel').classList.add('open');
   document.getElementById('profileAvatarLarge').src = state.currentUser.avatar;
   document.getElementById('profileName').value = state.currentUser.name;
   document.getElementById('profileAbout').value = state.currentUser.about;
 });
 
 // ============================
-// Toast Notifications
+// Toast
 // ============================
 function showToast(message) {
   const container = document.getElementById('toastContainer');
@@ -1981,20 +1775,18 @@ function showToast(message) {
 // Online Status Simulation
 // ============================
 setInterval(() => {
-  // Randomly toggle online status for some users
   state.users.forEach(user => {
     if (user.id === state.currentUser?.id) return;
-    if (Math.random() < 0.05) { // 5% chance every interval
+    if (Math.random() < 0.05) {
       user.online = !user.online;
       if (user.online) user.lastSeen = Date.now();
     }
   });
   saveUsers();
 
-  // Update active chat header if online status changed
   if (state.activeChat) {
     const user = state.users.find(u => u.id === state.activeChat);
-    if (user && !document.getElementById('typingIndicator').classList.contains('active')) {
+    if (user) {
       const statusEl = document.getElementById('chatStatus');
       if (user.online) {
         statusEl.textContent = 'online';
@@ -2006,44 +1798,11 @@ setInterval(() => {
     }
   }
 
-  // Refresh chat list to show updated status
   if (state.currentUser) renderChatList();
 }, 15000);
 
 // ============================
-// Simulate incoming messages from random users
-// ============================
-setInterval(() => {
-  if (!state.currentUser) return;
-  const otherUsers = state.users.filter(u => u.id !== state.currentUser.id);
-  if (otherUsers.length === 0) return;
-
-  // 3% chance of incoming message each interval
-  if (Math.random() < 0.03) {
-    const randomUser = otherUsers[Math.floor(Math.random() * otherUsers.length)];
-    const conv = getConversation(randomUser.id);
-    const incomingMsg = {
-      from: randomUser.id,
-      text: AUTO_REPLIES[Math.floor(Math.random() * AUTO_REPLIES.length)],
-      time: Date.now(),
-      status: 'delivered'
-    };
-    conv.push(incomingMsg);
-    saveConversations();
-
-    // If chat is currently open, mark as read
-    if (state.activeChat === randomUser.id) {
-      incomingMsg.status = 'read';
-      saveConversations();
-      renderMessages(state.activeChat);
-    }
-
-    renderChatList();
-  }
-}, 20000);
-
-// ============================
-// Initialize
+// Init
 // ============================
 initAuth();
 </script>
