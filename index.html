@@ -1227,6 +1227,40 @@ function getConversation(otherUserId) {
   }
   return state.conversations[key];
 }
+// BUKAN AUTH INI INIT 
+
+// Add this near the top of the <script>, before initAuth
+const DATA_VERSION = 'v2';
+
+function checkDataVersion() {
+  const stored = localStorage.getItem('wa_data_version');
+  if (stored !== DATA_VERSION) {
+    // Wipe all old data from previous versions
+    localStorage.removeItem('wa_users');
+    localStorage.removeItem('wa_conversations');
+    localStorage.removeItem('wa_session');
+    localStorage.setItem('wa_data_version', DATA_VERSION);
+  }
+}
+
+function initAuth() {
+  checkDataVersion(); // <-- call it first
+  state.users = getUsers();
+  state.conversations = getConversations();
+
+  const session = localStorage.getItem('wa_session');
+  if (session) {
+    const user = state.users.find(u => u.id === session);
+    if (user) {
+      state.currentUser = user;
+      showApp();
+      return;
+    }
+  }
+  showAuth();
+}
+
+
 
 // ============================
 // Auth
